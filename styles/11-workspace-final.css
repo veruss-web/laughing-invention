@@ -1,0 +1,20 @@
+/* FINAL PREMIUM FIX v2 — transaction detail stays inside workspace and never gets hidden by sidebar */
+@media (min-width:768px){
+  .order-detail-backdrop{
+    left:258px!important;
+    width:calc(100vw - 258px)!important;
+    right:auto!important;
+    z-index:220!important;
+    padding:24px!important;
+  }
+  .order-detail-modal{
+    width:min(760px,calc(100% - 24px))!important;
+    max-height:min(88dvh,820px)!important;
+    border-radius:26px!important;
+    box-shadow:0 34px 100px rgba(15,23,42,.26)!important;
+  }
+}
+@media (min-width:768px) and (max-width:1100px){
+  .order-detail-backdrop{left:258px!important;width:calc(100vw - 258px)!important;}
+  .modal.product-modal .category-picker-panel-floating .category-picker-options{grid-template-columns:1fr!important;}
+}

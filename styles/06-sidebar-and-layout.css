@@ -1,0 +1,277 @@
+/* --- Sidebar: desktop + tablet is always visible --- */
+
+.sidebar{
+  width:292px!important;
+  min-width:292px!important;
+  position:fixed!important;
+  inset:0 auto 0 0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  z-index:1000!important;
+  transform:none!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  background:#fff!important;
+  color:#667085!important;
+  border-right:1px solid #e9edf2!important;
+  box-shadow:14px 0 42px rgba(15,23,42,.055)!important;
+  padding:26px 16px 16px!important;
+  transition:transform .26s cubic-bezier(.22,.61,.36,1),visibility .26s ease!important;
+}
+.sidebar .brand{
+  padding:4px 10px 22px!important;
+  margin-bottom:18px!important;
+  border-bottom:1px solid #edf0f4!important;
+}
+.sidebar .brand-logo{
+  width:48px!important;height:48px!important;border-radius:15px!important;
+  background:linear-gradient(145deg,#ff6b32,#ff451f)!important;
+  box-shadow:0 10px 24px rgba(255,89,38,.22)!important;
+}
+.sidebar .brand b{font:800 18px/1 Manrope,sans-serif!important;color:#202736!important;letter-spacing:.1em!important}
+.sidebar .brand small{font:800 11px/1.2 Manrope,sans-serif!important;color:#f05d34!important;letter-spacing:.12em!important;margin-top:5px!important}
+.sidebar .mobile-close{display:none!important}
+.sidebar .store-card{
+  margin:0 4px 22px!important;padding:16px 15px!important;border-radius:18px!important;
+  border:1px solid #e8edf2!important;background:linear-gradient(135deg,#fff9f5,#fff)!important;
+  box-shadow:0 10px 28px rgba(31,41,55,.055)!important;
+}
+.sidebar .store-card b{font:750 17px/1.25 Manrope,sans-serif!important;color:#2d3748!important}
+.sidebar .store-card small{font:500 12px/1.3 Manrope,sans-serif!important;color:#8b95a5!important;margin-top:4px!important}
+.sidebar .live-dot{width:9px!important;height:9px!important;box-shadow:0 0 0 5px rgba(34,197,94,.1)!important}
+.sidebar nav{display:grid!important;gap:6px!important;padding:0!important}
+.sidebar nav button,
+.sidebar .side-bottom>button{
+  width:100%!important;height:52px!important;min-height:52px!important;
+  padding:0 15px!important;gap:14px!important;border-radius:15px!important;
+  border:1px solid transparent!important;background:transparent!important;
+  color:#687386!important;font:650 16px/1 Manrope,sans-serif!important;
+  letter-spacing:-.015em!important;
+  transition:background .16s ease,color .16s ease,transform .16s ease,box-shadow .16s ease!important;
+}
+.sidebar nav button svg,.sidebar .side-bottom>button svg{
+  width:22px!important;height:22px!important;flex:0 0 22px!important;color:#7b8492!important;
+}
+.sidebar nav button:hover,.sidebar .side-bottom>button:hover{
+  background:#f8fafc!important;color:#273142!important;transform:translateX(2px)!important;
+}
+.sidebar nav button.active{
+  background:linear-gradient(135deg,#fff1e9,#fff8f5)!important;
+  border-color:#ffe0d3!important;color:#f25521!important;font-weight:800!important;
+  box-shadow:0 8px 20px rgba(255,89,36,.09)!important;
+}
+.sidebar nav button.active svg{color:#ff5a24!important}
+.sidebar nav button.active::after{
+  content:"";position:absolute;right:7px;top:50%;transform:translateY(-50%);
+  width:4px;height:25px;border-radius:999px;background:#ff5a24!important;
+}
+.sidebar nav button i{display:none!important}
+.sidebar .side-bottom{
+  margin-top:auto!important;padding-top:14px!important;
+  border-top:1px solid #edf0f4!important;
+}
+.sidebar .user{
+  padding:15px 7px 0!important;margin-top:10px!important;border-top:0!important;
+  gap:10px!important;
+}
+.sidebar .user>div{
+  width:40px!important;height:40px!important;border-radius:13px!important;
+  background:linear-gradient(145deg,#fff0e8,#ffe1d3)!important;
+  color:#f25521!important;border:1px solid #ffd8c8!important;
+}
+.sidebar .user b{font-size:12px!important;color:#30394a!important}
+.sidebar .user small{font-size:10px!important;color:#929baa!important}
+
+/* Desktop/tablet content always reserves sidebar width. */
+.main{
+  margin-left:292px!important;
+  width:calc(100% - 292px)!important;
+  min-width:0!important;
+}
+
+/* No mobile drawer controls on desktop/tablet. */
+.hamb{display:none!important}
+.pos-topbar .hamb{display:none!important}
+.backdrop{display:none!important}
+
+/* --- Tablet: keep sidebar, compact only the sidebar itself --- */
+@media (min-width:768px) and (max-width:1100px){
+  .sidebar{
+    width:258px!important;
+    min-width:258px!important;
+    padding:22px 13px 14px!important;
+  }
+  .sidebar .brand{padding-left:8px!important;padding-right:8px!important}
+  .sidebar .brand-logo{width:44px!important;height:44px!important}
+  .sidebar .brand b{font-size:16px!important}
+  .sidebar .brand small{font-size:10px!important}
+  .sidebar .store-card{padding:13px 12px!important}
+  .sidebar .store-card b{font-size:15px!important}
+  .sidebar nav button,.sidebar .side-bottom>button{
+    height:47px!important;min-height:47px!important;
+    font-size:14px!important;padding:0 12px!important;gap:11px!important;
+  }
+  .sidebar nav button svg,.sidebar .side-bottom>button svg{
+    width:20px!important;height:20px!important;flex-basis:20px!important;
+  }
+  .main{margin-left:258px!important;width:calc(100% - 258px)!important}
+}
+
+/* --- Mobile only: sidebar becomes a slide-in drawer --- */
+@media (max-width:767px){
+  html,body{overflow-x:hidden!important}
+  .sidebar{
+    width:min(320px,88vw)!important;
+    min-width:0!important;
+    height:100dvh!important;
+    inset:0 auto 0 0!important;
+    padding:24px 15px 16px!important;
+    border-radius:0 24px 24px 0!important;
+    transform:translate3d(-110%,0,0)!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+    box-shadow:18px 0 50px rgba(15,23,42,.16)!important;
+    transition:transform .28s cubic-bezier(.22,.61,.36,1),visibility 0s linear .28s!important;
+  }
+  .sidebar.open{
+    transform:translate3d(0,0,0)!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+    transition:transform .28s cubic-bezier(.22,.61,.36,1),visibility 0s linear 0s!important;
+  }
+  .sidebar .mobile-close{
+    display:grid!important;place-items:center!important;
+    width:42px!important;height:42px!important;border-radius:13px!important;
+    background:#f7f8fa!important;border:1px solid #e7ebf0!important;color:#596273!important;
+  }
+  .main{margin-left:0!important;width:100%!important}
+  .hamb, .pos-topbar .hamb{
+    display:grid!important;place-items:center!important;
+    width:42px!important;height:42px!important;flex:0 0 42px!important;
+    border:0!important;background:transparent!important;color:var(--ink)!important;
+  }
+  .backdrop{
+    display:block!important;position:fixed!important;inset:0!important;
+    width:100vw!important;height:100dvh!important;padding:0!important;border:0!important;
+    background:rgba(8,12,18,.48)!important;
+    z-index:999!important;
+  }
+}
+
+/* CUSTOMER STATUS — transaksi kasir selesai */
+.customer-status.active{background:#ecfdf3!important;color:#168553!important}
+.customer-status.inactive{background:#f3f4f6!important;color:#8a93a1!important}
+
+/* --- Kasir: modern customer selector --- */
+.reference-customer-field{
+  position:relative!important;
+  z-index:80!important;
+  overflow:visible!important;
+}
+.reference-order-panel,.reference-order-left{
+  position:relative!important;
+  overflow:visible!important;
+}
+.customer-picker{position:relative!important;z-index:90!important}
+.customer-picker-trigger{
+  width:100%!important;min-height:50px!important;
+  padding:7px 12px!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;
+  border:1px solid #e3e7ee!important;border-radius:14px!important;
+  background:linear-gradient(180deg,#fff,#fbfcfe)!important;color:#273142!important;
+  box-shadow:0 3px 12px rgba(15,23,42,.035)!important;
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease!important;
+}
+.customer-picker-trigger:hover{
+  border-color:#cfd5df!important;box-shadow:0 7px 18px rgba(15,23,42,.06)!important;
+}
+.customer-picker.open .customer-picker-trigger{
+  border-color:#ffb69e!important;
+  box-shadow:0 0 0 4px rgba(255,90,54,.08),0 8px 22px rgba(15,23,42,.06)!important;
+}
+.customer-picker-trigger>div{min-width:0;display:flex;align-items:center;gap:10px}
+.customer-picker-trigger>div:before{
+  content:"";width:32px;height:32px;border-radius:10px;flex:0 0 32px;
+  background:#fff0e8;
+}
+.customer-picker-trigger>div>svg{
+  position:absolute;margin-left:8px;color:#ff5a24!important;
+}
+.customer-picker-trigger>svg{color:#667085!important;transition:transform .18s ease}
+.customer-picker.open .customer-picker-trigger>svg{transform:rotate(180deg)}
+.customer-picker-trigger b{
+  display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font:750 12px/1.2 Manrope,sans-serif!important;color:#273142!important;
+}
+.customer-picker-menu{
+  position:absolute!important;left:0!important;right:0!important;top:calc(100% + 8px)!important;
+  z-index:99999!important;display:block!important;visibility:visible!important;opacity:1!important;
+  padding:8px!important;background:#fff!important;border:1px solid #e4e7ec!important;
+  border-radius:16px!important;box-shadow:0 24px 60px rgba(15,23,42,.18)!important;
+  max-height:330px!important;overflow:hidden!important;
+}
+.customer-picker-search{
+  height:42px!important;margin:0 0 7px!important;padding:0 11px!important;
+  display:flex!important;align-items:center!important;gap:8px!important;
+  border:1px solid #e6e9ef!important;border-radius:11px!important;background:#f8fafc!important;
+  color:#98a2b3!important;
+}
+.customer-picker-search:focus-within{
+  border-color:#ffc1ad!important;background:#fff!important;box-shadow:0 0 0 3px rgba(255,90,54,.06)!important;
+}
+.customer-picker-search input{
+  width:100%!important;height:100%!important;border:0!important;outline:0!important;
+  background:transparent!important;color:#344054!important;font:600 11px Manrope,sans-serif!important;
+}
+.customer-picker-search input::placeholder{color:#98a2b3!important}
+.customer-picker-list{
+  max-height:265px!important;overflow-y:auto!important;padding-right:2px!important;
+}
+.customer-picker-list>button{
+  width:100%!important;min-height:54px!important;
+  border:0!important;background:transparent!important;border-radius:11px!important;
+  padding:8px 9px!important;display:grid!important;
+  grid-template-columns:36px minmax(0,1fr) 18px!important;
+  align-items:center!important;gap:10px!important;text-align:left!important;color:#344054!important;
+}
+.customer-picker-list>button:hover{background:#f8fafc!important}
+.customer-picker-list>button.active{
+  background:linear-gradient(135deg,#fff3ed,#fff9f6)!important;
+  box-shadow:inset 0 0 0 1px #ffe0d3!important;
+}
+.customer-picker-list>button>span:nth-child(2){
+  min-width:0!important;display:flex!important;flex-direction:column!important;gap:3px!important;
+}
+.customer-picker-list b{
+  font:750 11px/1.2 Manrope,sans-serif!important;color:#273142!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+.customer-picker-list small{
+  font:500 9px/1.2 Manrope,sans-serif!important;color:#98a2b3!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+.customer-picker-list>button>svg{justify-self:end!important;color:#ff5a24!important}
+.customer-picker-avatar{
+  width:36px!important;height:36px!important;border-radius:11px!important;
+  display:grid!important;place-items:center!important;
+  background:#fff0e8!important;color:#f25521!important;
+  font:800 11px Manrope,sans-serif!important;
+}
+.customer-picker-avatar.general{background:#f2f4f7!important;color:#667085!important}
+.customer-picker-empty{
+  min-height:90px!important;padding:18px 10px!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  gap:5px!important;text-align:center!important;color:#98a2b3!important;
+  font:600 10px/1.4 Manrope,sans-serif!important;
+}
+.customer-picker-empty b{font-size:11px!important;color:#667085!important}
+.customer-picker-empty svg{color:#ff6a3b!important;margin-bottom:2px!important}
+@media(max-width:767px){
+  .customer-picker-menu{
+    max-height:min(330px,52dvh)!important;
+  }
+  .customer-picker-list{max-height:min(265px,42dvh)!important}
+}

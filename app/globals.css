@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+@import '../styles/01-foundation.css';
+@import '../styles/02-product-catalog.css';
+@import '../styles/03-analytics.css';
+@import '../styles/04-transaction-history.css';
+@import '../styles/05-search-and-periods.css';
+@import '../styles/06-sidebar-and-layout.css';
+@import '../styles/07-customer-picker.css';
+@import '../styles/08-customers-and-pos.css';
+@import '../styles/09-category-and-responsive.css';
+@import '../styles/10-category-and-modal-final.css';
+@import '../styles/11-workspace-final.css';

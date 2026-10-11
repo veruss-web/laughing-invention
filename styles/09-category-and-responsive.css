@@ -1,0 +1,62 @@
+/* FINAL FIX — POS categories visible on desktop/tablet + sidebar stays persistent */
+@media (min-width:901px){
+  .pos-reference-page .reference-categories{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    align-items:center!important;
+    gap:10px!important;
+    overflow:visible!important;
+    max-height:none!important;
+    padding:4px 14px 16px!important;
+  }
+  .pos-reference-page .reference-categories button{
+    flex:0 0 auto!important;
+    min-width:max-content!important;
+  }
+  .pos-reference-page .pos-catalog{
+    overflow:visible!important;
+  }
+  .pos-reference-page .reference-category-head{
+    position:relative!important;
+    z-index:2!important;
+  }
+  .sidebar{
+    position:fixed!important;
+    left:0!important;
+    top:0!important;
+    bottom:0!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+    transform:none!important;
+    z-index:100!important;
+  }
+  .main{
+    margin-left:258px!important;
+    width:calc(100% - 258px)!important;
+  }
+  .orders-page.orders-premium-page{
+    position:relative!important;
+    z-index:1!important;
+  }
+}
+
+/* Premium, always-readable category selector */
+.reference-categories button{
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease!important;
+}
+.reference-categories button:hover{
+  transform:translateY(-1px)!important;
+  border-color:#ffb79e!important;
+  box-shadow:0 7px 18px rgba(245,91,45,.09)!important;
+}
+
+/* Keep the transaction history visually inside the main workspace. */
+.orders-premium-page{
+  min-width:0!important;
+}
+@media (min-width:901px){
+  .orders-premium-page .orders-premium-surface,
+  .orders-premium-page .orders-premium-kpis{
+    overflow:visible!important;
+  }
+}

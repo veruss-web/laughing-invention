@@ -1,0 +1,342 @@
+/* GLOBAL SEARCH STABILITY PATCH — prevent layout jumping on focus */
+@media (min-width:621px) and (max-width:900px){
+  .topbar{display:flex!important;align-items:center!important}
+  .top-actions{min-width:0!important;flex:1 1 auto!important;justify-content:flex-end!important}
+  .global-search{width:clamp(180px,34vw,300px)!important;min-width:0!important;flex:0 1 clamp(180px,34vw,300px)!important;transition:border-color .18s ease,box-shadow .18s ease!important}
+  .global-search:focus-within{width:clamp(180px,34vw,300px)!important;flex-basis:clamp(180px,34vw,300px)!important}
+}
+
+@media (max-width:620px){
+  /* Keep the search in one stable second row. Focusing the input must never
+     recalculate header layout or move the action buttons. */
+  .global-search{box-sizing:border-box!important;transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease!important}
+  .global-search:focus-within{width:auto!important;transform:none!important;box-shadow:0 14px 34px rgba(79,70,229,.14)!important}
+  /* Respect the React inline visibility state: the clear button only appears
+     when there is an actual query. */
+  .global-search-clear[style*="display: none"]{display:none!important}
+  .global-search-clear[style*="display: grid"]{display:grid!important}
+}
+
+/* =========================================================
+   POS / CASHIER SEARCH — FORCE VISIBLE ON HP, TABLET & DESKTOP
+   ========================================================= */
+@media(max-width:900px){
+  .pos-topbar .global-search{
+    display:flex!important;
+  }
+}
+
+@media(max-width:620px){
+  .pos-topbar .global-search{
+    display:flex!important;
+    position:absolute!important;
+    left:8px!important;
+    right:8px!important;
+    top:calc(100% + 8px)!important;
+    width:auto!important;
+    max-width:none!important;
+    height:46px!important;
+    min-height:46px!important;
+    transform:none!important;
+    box-sizing:border-box!important;
+    z-index:120!important;
+    background:rgba(255,255,255,.99)!important;
+    border:1px solid #e4e8f0!important;
+    border-radius:14px!important;
+    box-shadow:0 12px 30px rgba(16,24,40,.10)!important;
+  }
+  .pos-topbar .global-search input{
+    display:block!important;
+    width:100%!important;
+    min-width:0!important;
+    flex:1!important;
+    color:#1f2937!important;
+  }
+  .pos-topbar .global-search kbd{display:none!important}
+  .pos-topbar .global-search-clear{display:grid!important}
+  .pos-topbar + .content{padding-top:76px!important}
+  .shell.dark .pos-topbar .global-search{
+    background:rgba(21,25,31,.99)!important;
+    border-color:rgba(255,255,255,.10)!important;
+  }
+}
+
+@media(max-width:390px){
+  .pos-topbar .global-search{left:6px!important;right:6px!important;height:44px!important;min-height:44px!important}
+  .pos-topbar + .content{padding-top:72px!important}
+}
+
+/* POS PREMIUM SEARCH RESULTS */
+.pos-search-result-head{margin:18px 10px 14px;padding:18px 20px;border:1px solid #e9edf3;border-radius:18px;background:linear-gradient(135deg,#fff 0%,#faf9ff 100%);display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:0 10px 30px rgba(31,41,55,.045)}
+.pos-search-result-head>div:first-child span{font-size:9px;font-weight:800;letter-spacing:.14em;color:#7567f8}.pos-search-result-head h3{margin:5px 0 4px;font:800 18px Manrope;color:#202633;letter-spacing:-.025em}.pos-search-result-head p{margin:0;font-size:11px;color:#7c8594}.pos-search-result-head p b{color:#4f46e5}
+.pos-search-query{height:40px;max-width:280px;min-width:150px;padding:0 8px 0 12px;border:1px solid #e6e7f6;background:#fff;border-radius:12px;display:flex;align-items:center;gap:8px;color:#6f7684;box-shadow:0 4px 15px rgba(79,70,229,.04)}.pos-search-query svg{color:#6d5dfc}.pos-search-query span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px}.pos-search-query b{min-width:24px;height:24px;padding:0 6px;border-radius:8px;background:#f0efff;color:#5d50ea;display:grid;place-items:center;font-size:10px}
+.reference-product-grid.is-searching{padding-top:2px}.pos-search-empty{min-height:220px!important;border:1px dashed #dfe3eb!important;border-radius:18px!important;background:linear-gradient(180deg,#fff,#fbfcff)!important;margin:0 10px 12px!important;color:#697386!important;display:flex!important;align-items:center!important;justify-content:center!important;flex-direction:column!important;gap:8px!important}.pos-search-empty b{font:800 14px Manrope;color:#273142}.pos-search-empty span{font-size:11px}.pos-search-empty-icon{width:52px;height:52px;border-radius:16px;background:#f2f0ff;color:#685cf3;display:grid;place-items:center;margin-bottom:3px}
+@media(max-width:620px){.pos-search-result-head{margin:12px 2px 10px;padding:15px;border-radius:15px;align-items:flex-start;flex-direction:column;gap:12px}.pos-search-result-head h3{font-size:16px}.pos-search-query{width:100%;max-width:none}.pos-search-empty{margin:0 2px 10px!important;min-height:190px!important}.reference-product-grid.is-searching{padding-top:0}}
+
+
+/* =========================================================
+   OVERVIEW-ONLY SEARCH — SaaS stable centered top placement
+   ========================================================= */
+.topbar .global-search{display:none!important}
+.overview-topbar .overview-search{display:flex!important}
+
+@media (min-width:901px){
+  .overview-topbar{position:relative!important}
+  .overview-topbar .top-actions{margin-left:auto!important}
+  .overview-topbar .overview-search{
+    position:absolute!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+    width:clamp(300px,34vw,480px)!important;
+    height:40px!important;
+    box-sizing:border-box!important;
+    z-index:5!important;
+    transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease!important;
+  }
+  .overview-topbar .overview-search:focus-within{
+    width:clamp(300px,34vw,480px)!important;
+    transform:translate(-50%,-50%)!important;
+  }
+}
+
+@media (min-width:621px) and (max-width:900px){
+  .overview-topbar{position:relative!important}
+  .overview-topbar .overview-search{
+    position:absolute!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+    width:clamp(210px,34vw,340px)!important;
+    height:40px!important;
+    box-sizing:border-box!important;
+    z-index:6!important;
+    transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease!important;
+  }
+  .overview-topbar .overview-search:focus-within{
+    width:clamp(210px,34vw,340px)!important;
+    transform:translate(-50%,-50%)!important;
+  }
+}
+
+@media (max-width:620px){
+  /* Search stays inside the top bar, centered and fixed-size: no second row,
+     no layout jump, and no movement when the input receives focus. */
+  .overview-topbar{position:sticky!important;overflow:visible!important}
+  .overview-topbar .crumb{display:none!important}
+  .overview-topbar .overview-search{
+    display:flex!important;
+    position:absolute!important;
+    left:50%!important;
+    right:auto!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+    width:clamp(170px,58vw,310px)!important;
+    max-width:calc(100vw - 126px)!important;
+    height:40px!important;
+    min-height:40px!important;
+    box-sizing:border-box!important;
+    z-index:7!important;
+    border-radius:12px!important;
+    padding:0 10px!important;
+    gap:7px!important;
+    transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease!important;
+  }
+  .overview-topbar .overview-search:focus-within{
+    width:clamp(170px,58vw,310px)!important;
+    max-width:calc(100vw - 126px)!important;
+    transform:translate(-50%,-50%)!important;
+    box-shadow:0 0 0 4px rgba(99,91,255,.10)!important;
+  }
+  .overview-topbar .overview-search input{min-width:0!important;width:100%!important;font-size:12px!important}
+  .overview-topbar .overview-search kbd{display:none!important}
+  .overview-topbar .top-actions{margin-left:auto!important}
+  .overview-topbar .global-search-clear[style*="display: none"]{display:none!important}
+  .overview-topbar .global-search-clear[style*="display: grid"]{display:grid!important}
+  /* Restore normal page spacing; the search is no longer below the header. */
+  .overview-topbar + .content{padding-top:18px!important}
+}
+@media(max-width:390px){
+  .overview-topbar .overview-search{
+    width:clamp(150px,54vw,240px)!important;
+    max-width:calc(100vw - 118px)!important;
+    height:38px!important;
+    min-height:38px!important;
+  }
+}
+
+/* =========================================================
+   UNIVERSAL SEARCH — ALL PAGES / SaaS PREMIUM / STABLE
+   Final override: centered, no theme-toggle button, no layout jump.
+   ========================================================= */
+.topbar .global-search.universal-search{display:flex!important}
+.topbar{position:sticky!important;overflow:visible!important}
+.topbar .universal-search{
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  transform:translate(-50%,-50%)!important;
+  width:clamp(280px,34vw,520px)!important;
+  max-width:calc(100% - 330px)!important;
+  height:46px!important;
+  min-height:46px!important;
+  padding:0 15px!important;
+  gap:10px!important;
+  box-sizing:border-box!important;
+  border:1px solid #e5e8ef!important;
+  border-radius:15px!important;
+  background:linear-gradient(180deg,#ffffff 0%,#fbfcff 100%)!important;
+  box-shadow:0 8px 24px rgba(16,24,40,.055), inset 0 1px 0 rgba(255,255,255,.9)!important;
+  color:#98a2b3!important;
+  z-index:25!important;
+  transition:border-color .18s ease,box-shadow .18s ease,background .18s ease!important;
+}
+.topbar .universal-search>svg{color:#f06732!important;flex:0 0 auto}
+.topbar .universal-search input{font:600 13px Manrope,'DM Sans',sans-serif!important;color:#344054!important;letter-spacing:.005em!important}
+.topbar .universal-search input::placeholder{color:#98a2b3!important;opacity:1!important}
+.topbar .universal-search kbd{font:700 9px Manrope,sans-serif!important;color:#98a2b3!important;background:#f7f8fb!important;border:1px solid #e8ebf0!important;border-radius:7px!important;padding:4px 6px!important;white-space:nowrap!important}
+.topbar .universal-search:focus-within{
+  transform:translate(-50%,-50%)!important;
+  width:clamp(280px,34vw,520px)!important;
+  border-color:#cfc8ff!important;
+  background:#fff!important;
+  box-shadow:0 0 0 4px rgba(99,91,255,.09),0 12px 30px rgba(16,24,40,.08)!important;
+}
+.topbar .universal-search .global-search-clear{right:12px!important;background:#f2f4f7!important;color:#667085!important}
+.topbar .universal-search .global-search-clear:hover{background:#ebe9ff!important;color:#5b50d8!important}
+.topbar .top-actions{margin-left:auto!important;min-width:0!important}
+/* Theme switch intentionally removed from JSX; keep action area compact. */
+.topbar .top-actions>.top-icon:not(.top-bell){display:none!important}
+
+@media (max-width:900px){
+  .topbar .universal-search{
+    width:clamp(210px,46vw,390px)!important;
+    max-width:calc(100vw - 190px)!important;
+    height:44px!important;
+    min-height:44px!important;
+  }
+  .topbar .universal-search:focus-within{width:clamp(210px,46vw,390px)!important}
+  .top-admin{display:none!important}
+}
+
+@media (max-width:620px){
+  /* Search remains inside the same top row on every page. */
+  .topbar .universal-search{
+    display:flex!important;
+    position:absolute!important;
+    left:50%!important;
+    right:auto!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+    width:clamp(172px,58vw,320px)!important;
+    max-width:calc(100vw - 132px)!important;
+    height:42px!important;
+    min-height:42px!important;
+    border-radius:14px!important;
+    padding:0 12px!important;
+    z-index:30!important;
+  }
+  .topbar .universal-search:focus-within{
+    width:clamp(172px,58vw,320px)!important;
+    max-width:calc(100vw - 132px)!important;
+    transform:translate(-50%,-50%)!important;
+  }
+  .topbar .universal-search input{font-size:12px!important}
+  .topbar .universal-search kbd{display:none!important}
+  .topbar .universal-search .global-search-clear{right:8px!important}
+  .topbar + .content,.pos-topbar + .content,.overview-topbar + .content{padding-top:18px!important}
+}
+
+@media (max-width:390px){
+  .topbar .universal-search{width:clamp(145px,54vw,240px)!important;max-width:calc(100vw - 118px)!important;height:40px!important;min-height:40px!important}
+  .topbar .universal-search:focus-within{width:clamp(145px,54vw,240px)!important}
+}
+/* Final interaction fixes: premium custom filters, real pagination, inventory filter */
+.orders-filter-select.orders-period-trigger{font:700 11px Manrope,sans-serif;cursor:pointer;text-align:left}.orders-filter-select.orders-period-trigger span{flex:1;min-width:0;color:#344054;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.orders-pagination button:not(:disabled){cursor:pointer}.orders-pagination>div button{width:38px;height:38px;border-radius:11px;border:1px solid #e7eaf0;background:#fff;display:grid;place-items:center;font:700 11px Manrope,sans-serif;color:#475467;cursor:pointer}.orders-pagination>div button.active{border-color:#eeecff;background:#f0efff;color:#635bff}.inventory-mobile-filter{display:flex;gap:7px;flex-wrap:wrap;padding:0 20px 14px;background:#fcfcfd;border-bottom:1px solid #eef0f4}.inventory-mobile-filter button{height:36px;padding:0 12px;border:1px solid #e4e7ed;border-radius:10px;background:#fff;color:#667085;font:700 10px Manrope,sans-serif}.inventory-mobile-filter button.active{border-color:#d9d7ff;background:#f3f2ff;color:#5b52d6}
+@media(max-width:640px){.orders-pagination>div button{width:32px;height:32px;font-size:10px}.inventory-mobile-filter{padding:0 13px 12px}.inventory-mobile-filter button{flex:1;min-width:calc(50% - 4px)}}
+.order-detail-note{margin:14px 0;padding:13px 14px;border:1px solid #eceef3;border-radius:14px;background:#fafbfc}.order-detail-note span{display:block;font-size:9px;font-weight:800;letter-spacing:.12em;color:#667085}.order-detail-note p{margin:6px 0 0;color:#344054;font-size:12px;line-height:1.5}
+
+
+/* FINAL CASHIER HEADER FIX — search and notification separated */
+.topbar .top-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:14px!important;min-width:0!important;width:auto!important;position:relative!important}
+.topbar .universal-search{position:relative!important;left:auto!important;right:auto!important;top:auto!important;transform:none!important;margin:0!important;flex:0 1 390px!important;width:min(390px,34vw)!important;max-width:390px!important;min-width:180px!important;height:44px!important}
+.topbar .universal-search:focus-within{position:relative!important;left:auto!important;top:auto!important;transform:none!important;width:min(390px,34vw)!important;max-width:390px!important}
+.topbar .notification-wrap{position:relative!important;flex:0 0 auto!important;margin:0!important}
+.topbar .top-icon.top-bell{flex:0 0 42px!important;width:42px!important;height:42px!important}
+.pos-topbar .top-actions{gap:14px!important}
+.pos-topbar .universal-search{flex:0 1 360px!important;width:min(360px,32vw)!important;max-width:360px!important}
+.pos-topbar .universal-search:focus-within{width:min(360px,32vw)!important;max-width:360px!important}
+.pos-fullscreen{flex:0 0 auto!important;margin:0!important}
+@media(max-width:900px){.topbar .top-actions{gap:12px!important}.topbar .universal-search,.pos-topbar .universal-search{flex:1 1 auto!important;width:auto!important;max-width:320px!important;min-width:150px!important}.topbar .universal-search:focus-within,.pos-topbar .universal-search:focus-within{width:auto!important;max-width:320px!important}}
+@media(max-width:620px){.topbar{overflow:visible!important}.topbar .top-actions{flex:1 1 auto!important;gap:10px!important;min-width:0!important}.topbar .universal-search,.pos-topbar .universal-search{position:relative!important;display:flex!important;left:auto!important;top:auto!important;transform:none!important;flex:1 1 auto!important;width:auto!important;max-width:none!important;min-width:0!important;height:40px!important;min-height:40px!important;padding:0 10px!important;border-radius:12px!important}.topbar .universal-search:focus-within,.pos-topbar .universal-search:focus-within{transform:none!important;width:auto!important;max-width:none!important}.topbar .universal-search input{font-size:12px!important;min-width:0!important}.topbar .notification-wrap{margin-left:2px!important}.topbar .top-icon.top-bell{width:40px!important;height:40px!important}.pos-fullscreen{width:40px!important;height:40px!important}}
+@media(max-width:390px){.topbar .top-actions{gap:8px!important}.topbar .universal-search,.pos-topbar .universal-search{height:38px!important;min-height:38px!important;padding:0 9px!important}.topbar .top-icon.top-bell,.pos-fullscreen{width:38px!important;height:38px!important}}
+
+
+/* Transaction history search — functional, scoped, no navigation changes */
+.orders-premium-page .orders-filter-search{
+  position:relative;
+  min-width:0;
+  color:#667085;
+}
+.orders-premium-page .orders-filter-search input{
+  display:block;
+  min-width:0;
+  width:100%;
+  flex:1 1 auto;
+  padding:0 30px 0 0;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#344054;
+  font:600 12px Manrope,sans-serif;
+}
+.orders-premium-page .orders-filter-search input::placeholder{color:#98a2b3}
+.orders-premium-page .orders-search-clear{
+  position:absolute;
+  right:9px;
+  top:50%;
+  transform:translateY(-50%);
+  width:25px;
+  height:25px;
+  place-items:center;
+  padding:0;
+  border:0;
+  border-radius:8px;
+  background:#f2f4f7;
+  color:#667085;
+  cursor:pointer;
+  font-size:17px;
+  line-height:1;
+}
+.orders-premium-page .orders-search-clear:hover{background:#e4e7ec;color:#344054}
+@media(max-width:640px){
+  .orders-premium-page .orders-filter-search{grid-column:auto;width:100%;}
+  .orders-premium-page .orders-filter-search input{display:block;font-size:12px;}
+  .orders-premium-page .orders-filter-search span{display:none;}
+}
+
+/* Analytics period picker — matches the premium transaction filter UI; no native select box */
+.analytics-preset-trigger{
+  min-width:118px;
+  height:40px;
+  padding:0 12px;
+  border:1px solid #e3e7ee;
+  border-radius:12px;
+  background:#fff;
+  color:#4f46e5;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  box-shadow:none;
+}
+.analytics-preset-trigger:hover{border-color:#d9d7ff;background:#fafaff}
+.analytics-preset-trigger:focus-visible{outline:3px solid rgba(99,91,255,.12);outline-offset:1px}
+.analytics-preset-trigger span{color:#344054!important;font:700 11px Manrope,sans-serif!important}
+@media(max-width:600px){
+  .analytics-filter-panel .analytics-preset-trigger{width:100%;height:42px;min-width:0}
+}
+
+/* =========================================================
+   MIEFLOW — CLEAN RESPONSIVE SIDEBAR + KASIR CUSTOMER PICKER
+   Single final source of truth. Breakpoint: mobile < 768px.
+   ========================================================= */

@@ -1,0 +1,44 @@
+/* FINAL PREMIUM FIX v2 — desktop/tablet category picker escapes modal clipping */
+@media (min-width:768px){
+  .modal.product-modal .category-picker-field{position:relative!important;z-index:30!important;}
+  .modal.product-modal .category-picker-panel-floating{
+    position:fixed!important;
+    margin:0!important;
+    padding:12px!important;
+    border:1px solid #e3e7f3!important;
+    border-radius:20px!important;
+    background:linear-gradient(145deg,#ffffff 0%,#fafbff 100%)!important;
+    box-shadow:0 24px 70px rgba(21,32,58,.20),0 4px 16px rgba(86,71,180,.08)!important;
+    overflow:hidden!important;
+    animation:categoryPickerFloatIn .16s ease-out!important;
+  }
+  .modal.product-modal .category-picker-panel-floating .category-picker-options{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+    max-height:none!important;
+    height:100%!important;
+    overflow-y:auto!important;
+    overscroll-behavior:contain!important;
+    padding:2px!important;
+  }
+  .modal.product-modal .category-picker-panel-floating .category-picker-option{
+    min-height:74px!important;
+    border:1px solid #e8ebf4!important;
+    border-radius:16px!important;
+    background:#fff!important;
+  }
+  .modal.product-modal .category-picker-panel-floating .category-picker-option:hover{
+    border-color:#b9a8ff!important;
+    background:linear-gradient(135deg,#fbf9ff,#f7faff)!important;
+    box-shadow:0 8px 20px rgba(93,73,202,.09)!important;
+    transform:translateY(-1px)!important;
+  }
+  .modal.product-modal .category-picker-panel-floating .category-picker-option.selected{
+    border-color:#8969f5!important;
+    background:linear-gradient(125deg,#f4efff,#f1f7ff)!important;
+  }
+  .modal.product-modal .category-picker-panel-floating .category-picker-option>span:nth-child(2){font-size:13px!important;}
+  .modal.product-modal .category-picker-panel-floating .category-option-icon{width:40px!important;height:40px!important;flex-basis:40px!important;border-radius:13px!important;}
+}
+@keyframes categoryPickerFloatIn{from{opacity:0;transform:translateY(-5px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
